@@ -1,0 +1,7 @@
+# node.js modules
+node_modules/
+
+# express server
+testexpress/
+
+# db

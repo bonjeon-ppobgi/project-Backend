@@ -1,6 +1,6 @@
 {
   "name": "backend",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "description": "\"package.json\"",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bonjeon-ppobgi/project-Backend.git"
+    "url": "git+https://github.com/bonjeon-ppobgi/project-Backend"
   },
   "keywords": [
     "server"
@@ -18,5 +18,14 @@
   "bugs": {
     "url": "https://github.com/bonjeon-ppobgi/project-Backend/issues"
   },
-  "homepage": "https://github.com/bonjeon-ppobgi/project-Backend#readme"
+  "homepage": "https://github.com/bonjeon-ppobgi/project-Backend#readme",
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "express": "^4.18.1",
+    "express-session": "^1.17.2",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16"
+  }
 }
