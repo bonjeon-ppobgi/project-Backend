@@ -1,8 +1,4 @@
 # node.js modules
 node_modules/
 
-# db
-db/
-
-# secure
 dev.js
