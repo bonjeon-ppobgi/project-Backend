@@ -6,4 +6,6 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Mind Forecast' });
 });
 
+router.use('/users', require('./users'));
+
 module.exports = router;

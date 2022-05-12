@@ -1,4 +1,11 @@
 # node.js modules
 node_modules/
 
+# security
 dev.js
+
+# test
+input.html
+
+# web
+bin/

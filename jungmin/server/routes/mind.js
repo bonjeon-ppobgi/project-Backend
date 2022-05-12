@@ -1,12 +1,13 @@
 var express = require('express');
 var router = express.Router();
-const User = require('../schemas/User') // 스키마
+const mindData = require('../schemas/mind') // 스키마
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  User.find()
-  .then((User) => {
-    res.json(User);
+  mindData.find()
+  .then((mindData) => {
+    res.json(mindData);
+    
   })
   .catch((err) => {
     console.error(err);
@@ -14,13 +15,17 @@ router.get('/', function(req, res, next) {
   })
 });
 
-// 유저 생성
+// 유저 정보 불러오기
+
+// 마음 날씨 저장
 
 router.post('/', (req, res, next) => {
-  const user = new User({
-    name: req.body.title
-  })
-  user.save()
+    const mind = new mindData({
+        mindID: req.body.mindID,
+        mindTemp: req.body.mindTemp,
+        isMind: req.body.isMind
+    })
+    mind.save()
     .then((result) => {
       res.json(result);
     })
