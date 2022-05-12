@@ -1,0 +1,12 @@
+# node.js modules
+node_modules/
+
+# security
+dev.js
+mediaKey.js
+
+# test
+input.html
+
+# web
+bin/
