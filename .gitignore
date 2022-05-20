@@ -16,3 +16,7 @@ route/test
 
 # ejs, pug, jade .. viewing 모듈
 views/
+public/
+
+# mongoose 관련
+schemas/

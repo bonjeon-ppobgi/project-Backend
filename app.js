@@ -15,8 +15,6 @@ mongoose.connect(config.mongoURI, {})
     .then(() => console.log('<keyword> DB Connected...'))
     .catch(err => console.log(err))
 
-const connectSchema = require('./schemas');
-
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
@@ -37,10 +35,6 @@ app.get('/main', (req, res)=>{
 });
 
 /////////////////////////////////////////////////////
-
-
-
-/* Express 디폴트 설정값 */
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
