@@ -8,6 +8,6 @@ router.get('/', function(req, res, next) {
 
 router.use('/main', require('./main'));
 router.use('/mind', require('./mind'));
-router.use('/mind/result', require('./result'));
+router.use('/result', require('./result'));
 
 module.exports = router;

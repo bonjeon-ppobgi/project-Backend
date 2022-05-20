@@ -27,7 +27,7 @@ const resultRouter = require('./routes/result');
 app.use('/', indexRouter);
 app.use('/main', mainRouter);
 app.use('/mind', mindRouter);
-app.use('/mind/result', resultRouter);
+app.use('/result', resultRouter);
 
 /* html request 테스트용으로 추가한 코드 */
 app.get('/main', (req, res)=>{ 
