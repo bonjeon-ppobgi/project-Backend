@@ -10,3 +10,6 @@ input.html
 
 # web
 bin/
+
+# temp
+route/result.js

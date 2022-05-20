@@ -4,19 +4,19 @@ const { Schema } = mongoose;
 
 const mindSchema = new Schema({
      userID: {
-         type: mongoose.SchemaTypes.ObjectId,
+         type: String,
          maxlenth: 50,
-         ref: "userdatas",
+         required: true,
      },
      mindID: {
-         type: Number,
-         required: true,
+         type: Number
      },
      mindTemp: {
          type: Number,
      },
-     isMind: {
-         type: Boolean,
+     createdAt: {
+         type: Date,
+         default: Date.now
      }
 })
 

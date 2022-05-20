@@ -1,42 +1,43 @@
 /* 기본 변수들 */
 const createError = require('http-errors');
 const express = require('express');
+const morgan = require('morgan');
 const path = require('path');
 const cookieParser = require('cookie-parser');
-const logger = require('morgan');
 const config = require('./config/key');
 const app = express();
-
-/* mongoose 연결부 */
+const cors = require('cors');
 const mongoose = require('mongoose');
+app.use(cors());
+
+/* DB 연결부 */
 mongoose.connect(config.mongoURI, {})
-    .then(() => console.log('MongoDB Connected...'))
+    .then(() => console.log('<keyword> DB Connected...'))
     .catch(err => console.log(err))
 
 const connectSchema = require('./schemas');
-connectSchema();
-
 
 app.use(express.urlencoded({ extended: true }))
+app.use(express.json())
 
 /* 라우터 연결부 */
 const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
+const mainRouter = require('./routes/main');
 const mindRouter = require('./routes/mind');
-// const currentRouter = require('./routes/current');
+const resultRouter = require('./routes/result');
 
 app.use('/', indexRouter);
-app.use('/main', usersRouter);
+app.use('/main', mainRouter);
 app.use('/mind', mindRouter);
-// app.use('/current', currentRouter);
-
+app.use('/mind/result', resultRouter);
 
 /* html request 테스트용으로 추가한 코드 */
-app.get('/input', (req, res)=>{ 
+app.get('/main', (req, res)=>{ 
   res.sendFile(__dirname +'/input.html')
 });
 
 /////////////////////////////////////////////////////
+
 
 
 /* Express 디폴트 설정값 */
@@ -45,7 +46,7 @@ app.get('/input', (req, res)=>{
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-app.use(logger('dev'));
+app.use(morgan('dev'));
 app.use(express.json());
 // app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
