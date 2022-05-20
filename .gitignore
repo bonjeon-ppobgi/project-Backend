@@ -1,0 +1,18 @@
+# node.js modules
+node_modules/
+
+# security
+dev.js
+mediaKey.js
+
+# test
+input.html
+
+# web
+bin/
+
+# temp
+route/test
+
+# ejs, pug, jade .. viewing 모듈
+views/
