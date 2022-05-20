@@ -2,9 +2,7 @@ var express = require('express');
 const app = require('../app');
 const mind = require('../schemas/mind');
 var router = express.Router();
-const mindSchema = require('../schemas/mind') // 스키마
 const config = require('../config/key');
-const res = require('express/lib/response');
 
 function translateKeys (key) {
     const keywords = {
@@ -58,29 +56,47 @@ function translateKeys (key) {
             key = keywordList[i]
         }
     }
+
     return key;    
 }
 
 /* 데이터 넘겨주기 */
-router.get('/', (req, res, next) => {
-  const mongoClient = require('mongodb').MongoClient;
-  mongoClient.connect(config.mongoURI, (err, db) => {
-    if (err) throw err;
-    console.log('result 라우터에서 DB에 연결해써');
-
-
-    const database = db.db('keyword');
+router.post('/', (req, res, next) => {
     const userID = req.body.userID;
-    const mindID = Number(req.body.mindID);
-    const mindTemp = Number(req.body.mindTemp);
-    const word = String(req.body.word);
+    const mindID = req.body.mindID;
+    const mindTemp = req.body.mindTemp;
+    const word = req.body.word;
 
-    collectionKey = translateKeys(word)
-    database.collection(collectionKey).find({}, (err, result)=>{
-        if (err) throw err;
-        res.json(result);
-    })
-  });
-});
+    /* 한글로 온 키워드 collection명으로 변환 */
+    key = translateKeys(word);
+    console.log(key);
+    
+    /* 데이터 꺼내오기 */
+    const { MongoClient } = require("mongodb");
+    const client = new MongoClient(config.mongoURI);
+    async function run(k) {
+    try {
+        await client.connect();
+        const database = client.db("keyword");
+        const movies = database.collection(String(k));
+        const options = {
+        projection: { _id: 0 },
+        };
+        const cursor = movies.find({}, options);
+        if ((await cursor.countDocuments) === 0) {
+        console.log("데이터가 없습니다.");
+        }
+        const result = await cursor.toArray();
+
+        /* response로 send */
+        res.json({userID, mindID, mindTemp, result});
+        console.log("전송 완료~!");
+    } finally {
+        await client.close();
+    }}
+    /* run */
+    run(key);
+}
+)
 
 module.exports = router;

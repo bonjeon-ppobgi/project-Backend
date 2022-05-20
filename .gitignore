@@ -12,4 +12,7 @@ input.html
 bin/
 
 # temp
-route/result.js
+route/test
+
+# ejs, pug, jade .. viewing 모듈
+views/
