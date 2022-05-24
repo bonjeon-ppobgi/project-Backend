@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const User = require('../schemas/User') // 스키마
+// const User = require('../schemas/User') // 스키마
 
 
 

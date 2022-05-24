@@ -1,6 +1,6 @@
 var express = require('express');
 const app = require('../app');
-const mind = require('../schemas/mind');
+// const mind = require('../schemas/mind');
 var router = express.Router();
 const config = require('../config/key');
 
