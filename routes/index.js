@@ -6,8 +6,8 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Mind Forecast' });
 });
 
-router.use('/main', require('./main'));
-router.use('/mind', require('./mind'));
-router.use('/result', require('./result'));
+router.use('/api/main', require('./main'));
+router.use('/api/mind', require('./mind'));
+router.use('/api/result', require('./result'));
 
 module.exports = router;
